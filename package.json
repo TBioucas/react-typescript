@@ -24,8 +24,10 @@
     "eject": "react-scripts eject",
     "lint:js": "eslint './src/**/*.{js,jsx,ts,tsx}'",
     "lint:js:fix": "eslint './src/**/*.{js,jsx,ts,tsx}' --fix",
-    "lint:css": "stylelint './src/**/*.css' --syntax css",
-    "lint:css:fix": "stylelint './src/**/*.css' --syntax css --fix",
+    "lint:style": "stylelint './src/**/*.css' --syntax css",
+    "lint:style:fix": "stylelint './src/**/*.css' --syntax css --fix",
+    "lint": "npm run lint:js && npm run lint:style",
+    "lint:fix": "npm run lint:js:fix && npm run lint:style:fix",
     "version": "echo $npm_package_version"
   },
   "browserslist": {
@@ -68,11 +70,11 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint . --fix",
+      "eslint . --fix --ignore-path .gitignore .",
       "git add"
     ],
     "src/**/*.css": [
-      "stylelint --syntax css --fix",
+      "stylelint --syntax css --fix --ignore-path .gitignore .",
       "git add"
     ]
   }
