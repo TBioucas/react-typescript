@@ -22,10 +22,10 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:js": "eslint './src/**/*.{js,jsx,ts,tsx}'",
-    "lint:js:fix": "eslint './src/**/*.{js,jsx,ts,tsx}' --fix",
-    "lint:style": "stylelint './src/**/*.css' --syntax css",
-    "lint:style:fix": "stylelint './src/**/*.css' --syntax css --fix",
+    "lint:js": "eslint './src/**/*.{js,jsx,ts,tsx}' --ignore-path .gitignore .",
+    "lint:js:fix": "eslint './src/**/*.{js,jsx,ts,tsx}' --fix --ignore-path .gitignore .",
+    "lint:style": "stylelint './src/**/*.{css,scss}' --ignore-path .gitignore .",
+    "lint:style:fix": "stylelint './src/**/*.{css,scss}' --fix --ignore-path .gitignore .",
     "lint": "npm run lint:js && npm run lint:style",
     "lint:fix": "npm run lint:js:fix && npm run lint:style:fix",
     "version": "echo $npm_package_version"
@@ -63,19 +63,19 @@
     "stylelint-config-standard": "^20.0.0",
     "stylelint-prettier": "^1.1.2"
   },
+  "lint-staged": {
+    "src/**/*.{js,jsx,ts,tsx}": [
+      "eslint './src/**/*.{js,jsx,ts,tsx}' --fix --ignore-path .gitignore .",
+      "git add"
+    ],
+    "src/**/*.{css,scss}": [
+      "stylelint './src/**/*.{css,scss}' --fix --ignore-path .gitignore .",
+      "git add"
+    ]
+  },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint . --fix --ignore-path .gitignore .",
-      "git add"
-    ],
-    "src/**/*.css": [
-      "stylelint --syntax css --fix --ignore-path .gitignore .",
-      "git add"
-    ]
   }
 }
