@@ -1,6 +1,24 @@
 module.exports = {
   root: true,
+  env: {
+    browser: true,
+    node: true,
+    es6: true,
+  },
   parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaVersion: 2020,
+    sourceType: 'module',
+    ecmaFeatures: {
+      jsx: true,
+    },
+  },
+  settings: {
+    react: {
+      pragma: 'React',
+      version: 'detect',
+    },
+  },
   plugins: ['prettier'],
   extends: [
     'plugin:@typescript-eslint/recommended',
@@ -11,12 +29,11 @@ module.exports = {
     'plugin:import/typescript',
     'plugin:jsx-a11y/recommended',
     'plugin:jest/recommended',
+    'plugin:prettier/recommended',
     'prettier',
     'prettier/react',
     'prettier/@typescript-eslint',
-    'plugin:prettier/recommended',
   ],
-  plugins: ['prettier'],
   rules: {
     'prettier/prettier': 'error',
     '@typescript-eslint/no-empty-interface': 'off',
@@ -26,26 +43,6 @@ module.exports = {
     'no-console': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-debugger': process.env.NODE_ENV === 'production' ? 'error' : 'off',
     'no-unused-vars': process.env.NODE_ENV === 'production' ? 'error' : 'warn',
-  },
-  parser: 'babel-eslint',
-  parserOptions: {
-    ecmaVersion: 2020,
-    sourceType: 'module',
-    ecmaFeatures: {
-      jsx: true,
-    },
-  },
-  env: {
-    browser: true,
-    node: true,
-    es6: true,
-    jest: true,
-  },
-  settings: {
-    react: {
-      pragma: 'React',
-      version: 'detect',
-    },
   },
   ignorePatterns: [
     'configs/**',

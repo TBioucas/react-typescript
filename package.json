@@ -22,12 +22,14 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint:js": "eslint './src/**/*.{js,jsx,ts,tsx}' --ignore-path .gitignore .",
-    "lint:js:fix": "eslint './src/**/*.{js,jsx,ts,tsx}' --fix --ignore-path .gitignore .",
-    "lint:style": "stylelint './src/**/*.{css,scss}' --ignore-path .gitignore .",
-    "lint:style:fix": "stylelint './src/**/*.{css,scss}' --fix --ignore-path .gitignore .",
+    "lint:js": "eslint '**/*.{js,jsx,ts,tsx}' --ignore-path .gitignore",
+    "lint:js:fix": "eslint '**/*.{js,jsx,ts,tsx}' --fix --ignore-path .gitignore",
+    "lint:style": "stylelint **/*.{css,scss} --ignore-path .gitignore",
+    "lint:style:fix": "stylelint **/*.{css,scss} --fix --ignore-path .gitignore",
     "lint": "npm run lint:js && npm run lint:style",
     "lint:fix": "npm run lint:js:fix && npm run lint:style:fix",
+    "jest": "jest",
+    "jest:update-snapshot": "jest --updateSnapshot",
     "version": "echo $npm_package_version"
   },
   "browserslist": {
@@ -64,12 +66,12 @@
     "stylelint-prettier": "^1.1.2"
   },
   "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint './src/**/*.{js,jsx,ts,tsx}' --fix --ignore-path .gitignore .",
+    "*.{js,jsx,ts,tsx}": [
+      "npm run lint:js:fix",
       "git add"
     ],
-    "src/**/*.{css,scss}": [
-      "stylelint './src/**/*.{css,scss}' --fix --ignore-path .gitignore .",
+    "*.{css,scss}": [
+      "npm run lint:style:fix",
       "git add"
     ]
   },
